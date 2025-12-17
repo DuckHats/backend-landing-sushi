@@ -16,8 +16,6 @@ class ReservationController extends Controller
 {
     public function store(StoreReservationRequest $request): JsonResponse
     {
-        // Honeypot check is handled by validation rules (max:0) or we can double check here
-        // If honey_pot field has data, it's a bot.
         if (!empty($request->honey_pot)) {
             return response()->json(['message' => 'Spam detected'], 422);
         }
@@ -36,10 +34,7 @@ class ReservationController extends Controller
             'status' => 'pending',
         ]);
 
-        // Send email to admin
-        // Assuming admin email is configured in .env as MAIL_FROM_ADDRESS or similar, 
-        // or we can hardcode a placeholder if not set.
-        $adminEmail = config('mail.from.address');
+        $adminEmail = config('mail.client.address');
         Mail::to($adminEmail)->send(new ReservationRequestMail($reservation));
 
         return response()->json([

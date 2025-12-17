@@ -23,7 +23,7 @@ class StoreReservationRequest extends FormRequest
             'persons' => 'required|integer|min:1|max:50',
             'date_time' => 'required|date|after:now',
             'intolerances' => 'nullable|string|max:1000',
-            'honey_pot' => 'max:0|nullable', // Simple honeypot check
+            'honey_pot' => 'max:0|nullable',
         ];
     }
 }

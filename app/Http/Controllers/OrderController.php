@@ -12,12 +12,10 @@ use Illuminate\Http\JsonResponse;
 
 class OrderController extends Controller
 {
-    // Placeholder prices until JSON is provided
     private array $productPrices = [
         1 => 10.00,
         2 => 5.50,
         3 => 12.99,
-        // Add more as needed or load from file
     ];
 
     public function store(StoreOrderRequest $request): JsonResponse
@@ -28,10 +26,8 @@ class OrderController extends Controller
 
         $validated = $request->validated();
 
-        // Calculate total
         $total = $this->calculateTotal($validated['products']);
 
-        // Sanitize strings
         $name = strip_tags($validated['name']);
         $email = filter_var($validated['email'], FILTER_SANITIZE_EMAIL);
         $phone = strip_tags($validated['phone']);
@@ -48,8 +44,7 @@ class OrderController extends Controller
             'total' => $total,
         ]);
 
-        // Send email to admin
-        $adminEmail = config('mail.from.address');
+        $adminEmail = config('mail.client.address');
         Mail::to($adminEmail)->send(new OrderSummaryMail($order));
 
         return response()->json([
