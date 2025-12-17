@@ -10,20 +10,38 @@ services:
     hostname: ${APP_HOSTNAME}
     environment:
       PUID: 1000
-      SSL_MODE: 'mixed'
+      SSL_MODE: "mixed"
     volumes:
       - ./:/var/www/html
     ports:
-      - '8001:80'
-      - '8101:443'
+      - "8000:80"
+      - "8100:443"
     networks:
       - landingBack
     healthcheck:
-      test: [ "CMD-SHELL", "wget --no-verbose --ºtries=1 --spider http://localhost || exit 1" ]
+      test:
+        [
+          "CMD-SHELL",
+          "wget --no-verbose --ºtries=1 --spider http://localhost || exit 1",
+        ]
       interval: 5m
       timeout: 3s
       retries: 3
+  db:
+    image: mysql:8.0
+    container_name: ${APP_HOSTNAME}_db
+    environment:
+      MYSQL_DATABASE: sudoku_sushi
+      MYSQL_USER: root
+      MYSQL_PASSWORD:
+      MYSQL_ROOT_PASSWORD:
+    volumes:
+      - ./docker/db:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - landingBack
 
 networks:
   landingBack:
-    external: true
+    driver: bridge
