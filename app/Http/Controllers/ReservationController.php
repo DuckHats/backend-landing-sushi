@@ -34,7 +34,7 @@ class ReservationController extends Controller
             'status' => 'pending',
         ]);
 
-        $adminEmail = config('mail.client.address');
+        $adminEmail = config('mail.client.email');
         Mail::to($adminEmail)->send(new ReservationRequestMail($reservation));
 
         return response()->json([

@@ -40,7 +40,7 @@ class OrderController extends Controller
             'total' => $total,
         ]);
 
-        $adminEmail = config('mail.client.address');
+        $adminEmail = config('mail.client.email');
         Mail::to($adminEmail)->send(new OrderSummaryMail($order));
 
         return response()->json([
