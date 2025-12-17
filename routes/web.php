@@ -9,3 +9,13 @@ Route::get('/', function () {
 
 Route::get('/reservations/{token}/accept', [ReservationController::class, 'accept'])->name('reservations.accept');
 Route::get('/reservations/{token}/reject', [ReservationController::class, 'reject'])->name('reservations.reject');
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});

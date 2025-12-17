@@ -29,7 +29,7 @@ class ReservationActionMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            text: 'emails.reservation_action',
+            view: 'emails.reservation_action',
         );
     }
 

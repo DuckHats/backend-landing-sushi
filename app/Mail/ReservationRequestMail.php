@@ -22,7 +22,7 @@ class ReservationRequestMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            text: 'emails.reservation_request',
+            view: 'emails.reservation_request',
         );
     }
 
