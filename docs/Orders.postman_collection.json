@@ -1,0 +1,105 @@
+{
+	"info": {
+		"_postman_id": "989a3458-e0f8-4d21-9c95-4b6aa51a9497",
+		"name": "Orders",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41222371",
+		"_collection_link": "https://duckhats-3040.postman.co/workspace/Landing_back_danil~14c6cbbb-3032-4c51-80fc-1fa23a834bf3/collection/41222371-989a3458-e0f8-4d21-9c95-4b6aa51a9497?action=share&source=collection_link&creator=41222371"
+	},
+	"item": [
+		{
+			"name": "Reservation",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Joan Garcia\",\r\n    \"email\": \"joan@example.com\",\r\n    \"phone\": \"666777888\",\r\n    \"persons\": 4,\r\n    \"date_time\": \"2025-01-20 20:30:00\",\r\n    \"intolerances\": \"Gluten\",\r\n    \"honey_pot\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/reservations",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"reservations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delivery orders",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Maria Lopez\",\r\n    \"email\": \"maria@example.com\",\r\n    \"phone\": \"666111222\",\r\n    \"address\": \"Carrer Major 1\",\r\n    \"payment_method\": \"cash\",\r\n    \"products\": [\r\n        {\r\n            \"id\": 1,\r\n            \"quantity\": 2\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"quantity\": 1\r\n        }\r\n    ],\r\n    \"honey_pot\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/delivery-orders",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"delivery-orders"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
