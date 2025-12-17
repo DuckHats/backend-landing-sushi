@@ -9,6 +9,7 @@ Route::get('/', function () {
 
 Route::get('/reservations/{token}/accept', [ReservationController::class, 'accept'])->name('reservations.accept');
 Route::get('/reservations/{token}/reject', [ReservationController::class, 'reject'])->name('reservations.reject');
+Route::get('/reservations/{token}/ics', [ReservationController::class, 'downloadIcs'])->name('reservations.ics');
 
 Route::middleware([
     'auth:sanctum',

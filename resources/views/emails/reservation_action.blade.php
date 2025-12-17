@@ -2,47 +2,55 @@
 <html>
 <head>
 <meta charset="utf-8">
-<style>
-    body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
-    .container { max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
-    .header { background-color: {{ $actionStatus === 'confirmed' ? '#8A9556' : '#1B1B1E' }}; color: #ffffff; padding: 40px 30px; text-align: center; }
-    .header h1 { margin: 0; font-size: 24px; font-weight: 600; letter-spacing: 0.5px; }
-    .content { padding: 40px 30px; color: #1B1B1E; line-height: 1.6; text-align: center; }
-    .status-icon { font-size: 48px; margin-bottom: 20px; display: block; }
-    .details { background-color: #FAFAFA; border-radius: 8px; padding: 20px; margin: 30px 0; text-align: left; }
-    .footer { background-color: #1B1B1E; padding: 25px; text-align: center; font-size: 12px; color: #666; }
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ $actionStatus === 'confirmed' ? config('app_texts.emails.reservation_action.subject_confirmed') : config('app_texts.emails.reservation_action.subject_rejected') }}</title>
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>Reserva {{ $actionStatus === 'confirmed' ? 'Confirmada' : 'Rebutjada' }}</h1>
+<body style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f7f7f7; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; line-height: 1.6;">
+    <div style="max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #eaeaea;">
+        <div style="background-color: {{ $actionStatus === 'confirmed' ? '#27ae60' : '#e74c3c' }}; padding: 30px; text-align: center;">
+            <h1 style="color: #ffffff; margin: 0; font-size: 22px; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase;">{{ $actionStatus === 'confirmed' ? config('app_texts.emails.reservation_action.title_confirmed') : config('app_texts.emails.reservation_action.title_rejected') }}</h1>
         </div>
-        <div class="content">
-            <span class="status-icon">{{ $actionStatus === 'confirmed' ? '✅' : '❌' }}</span>
-            
-            <p style="font-size: 18px;">Hola {{ $reservation->name }},</p>
-            
+        <div style="padding: 40px 30px; color: #333333; text-align: center;">
             @if($actionStatus === 'confirmed')
-                <p>Ens complau informar-te que la teva reserva ha estat confirmada correctament.</p>
+                <div style="font-size: 50px; margin-bottom: 20px; display: block;">🎉</div>
+                <p style="font-size: 16px; margin-bottom: 30px; color: #555;">{!! str_replace(':name', $reservation->name, config('app_texts.emails.reservation_action.message_confirmed')) !!}</p>
                 
-                <div class="details">
-                    <p><strong>Dia:</strong> {{ \Carbon\Carbon::parse($reservation->date_time)->format('d/m/Y') }}</p>
-                    <p><strong>Hora:</strong> {{ \Carbon\Carbon::parse($reservation->date_time)->format('H:i') }}</p>
-                    <p><strong>Persones:</strong> {{ $reservation->persons }}</p>
+                <div style="background-color: #f9f9f9; border: 1px solid #eeeeee; border-radius: 6px; padding: 25px; margin: 30px 0; text-align: left;">
+                    <div style="display: flow-root; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                        <span style="font-weight: 600; color: #888; font-size: 13px; text-transform: uppercase; float: left;">{{ config('app_texts.emails.reservation_action.labels.day') }}</span>
+                        <span style="font-weight: 500; color: #1a1a1a; float: right;">{{ \Carbon\Carbon::parse($reservation->date_time)->format('d/m/Y') }}</span>
+                    </div>
+                    <div style="display: flow-root; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                        <span style="font-weight: 600; color: #888; font-size: 13px; text-transform: uppercase; float: left;">{{ config('app_texts.emails.reservation_action.labels.time') }}</span>
+                        <span style="font-weight: 500; color: #1a1a1a; float: right;">{{ \Carbon\Carbon::parse($reservation->date_time)->format('H:i') }}h</span>
+                    </div>
+                    <div style="display: flow-root; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                        <span style="font-weight: 600; color: #888; font-size: 13px; text-transform: uppercase; float: left;">{{ config('app_texts.emails.reservation_action.labels.persons') }}</span>
+                        <span style="font-weight: 500; color: #1a1a1a; float: right;">{{ $reservation->persons }}</span>
+                    </div>
+                    <div style="display: flow-root; margin-bottom: 0; padding-bottom: 0;">
+                        <span style="font-weight: 600; color: #888; font-size: 13px; text-transform: uppercase; float: left;">{{ config('app_texts.emails.reservation_action.labels.address') }}</span>
+                        <span style="font-weight: 500; color: #1a1a1a; float: right;">{{ config('mail.client.address') }}</span>
+                    </div>
                 </div>
-                
-                <p>T'esperem aviat!</p>
+
+                <div style="margin-top: 35px; border-top: 1px solid #eee; padding-top: 25px;">
+                    <p style="font-size: 13px; color: #888; margin-bottom: 15px;">{{ config('app_texts.emails.reservation_action.calendar_intro') }}</p>
+                    <a href="{{ $googleCalendarLink }}" style="display: inline-block; background-color: #4285F4; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 4px; font-size: 14px; margin: 5px; font-weight: 500;">📅 Google Calendar</a>
+                    <a href="{{ route('reservations.ics', ['token' => $reservation->token]) }}" style="display: inline-block; background-color: #f1f3f4; color: #3c4043; text-decoration: none; padding: 10px 20px; border-radius: 4px; font-size: 14px; margin: 5px; font-weight: 500; border: 1px solid #dadce0;">📅 Outlook / Apple</a>
+                </div>
             @else
-                <p>Ho sentim, però no hem pogut confirmar la teva reserva per a la data sol·licitada.</p>
-                <p>Si us plau, posa't en contacte amb nosaltres per cercar una altra disponibilitat.</p>
-                <div class="details" style="text-align: center;">
-                    <p>📞 Contacte Restaurant</p>
+                <div style="font-size: 50px; margin-bottom: 20px; display: block;">😓</div>
+                <p style="font-size: 16px; margin-bottom: 30px; color: #555;">{!! str_replace(':name', $reservation->name, config('app_texts.emails.reservation_action.message_rejected')) !!}</p>
+                <p style="color: #666; font-size: 15px;">{{ config('app_texts.emails.reservation_action.message_rejected_sub') }}</p>
+                
+                <div style="margin-top: 30px;">
+                    <a href="tel:+34{{config('mail.client.phone')}}" style="color: #1a1a1a; text-decoration: underline; font-weight: 600;">{{ config('app_texts.emails.reservation_action.contact_button') }}</a>
                 </div>
             @endif
         </div>
-        <div class="footer">
-            &copy; {{ date('Y') }} Restaurant App. Tots els drets reservats.
+        <div style="background-color: #f7f7f7; padding: 20px; text-align: center; font-size: 12px; color: #999; border-top: 1px solid #eaeaea;">
+            &copy; {{ date('Y') }} {{ config('app.name') }}. {{ config('app_texts.emails.reservation_action.footer') }}
         </div>
     </div>
 </body>

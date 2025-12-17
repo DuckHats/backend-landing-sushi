@@ -1,0 +1,72 @@
+<?php
+
+return [
+    'reservation' => [
+        'success' => 'Reserva solicitada correctamente. Recibirás confirmación por email.',
+        'duplicate_error' => 'Ya tienes una reserva pendiente o confirmada para este día y hora.',
+        'spam_detected' => 'Spam detectado',
+        'feedback' => [
+            'expired_title' => 'Enlace Caducado',
+            'expired_message' => 'Esta solicitud ha caducado y ya no se puede procesar.',
+            'handled_title' => 'Ya Gestionada',
+            'handled_message' => 'Esta reserva ya ha sido gestionada (:status).',
+            'confirmed_title' => 'Reserva Confirmada',
+            'confirmed_message' => 'La reserva ha sido confirmada correctamente. Se ha enviado un correo al cliente.',
+            'rejected_title' => 'Reserva Rechazada',
+            'rejected_message' => 'La reserva ha sido rechazada correctamente. Se ha enviado un correo al cliente.',
+            'back_to_home' => 'Volver al inicio',
+        ],
+    ],
+    'order' => [
+        'success' => '¡Pedido recibido correctamente!',
+        'spam_detected' => 'Spam detectado',
+    ],
+    'emails' => [
+        'reservation_request' => [
+            'subject' => 'Nueva Solicitud de Reserva',
+            'title' => 'Solicitud de Reserva',
+            'intro' => 'Hola Admin, tienes una nueva solicitud de reserva pendiente.',
+            'labels' => [
+                'client' => 'Cliente',
+                'email' => 'Email',
+                'phone' => 'Teléfono',
+                'persons' => 'Personas',
+                'date' => 'Fecha',
+                'time' => 'Hora',
+                'intolerances' => '⚠️ Intolerancias / Notas:',
+            ],
+            'buttons' => [
+                'accept' => '✅ Aceptar',
+                'reject' => '❌ Rechazar',
+            ],
+            'expiry' => 'Estos enlaces caducan en 24 horas (:date).',
+            'footer' => 'Gestión de Reservas.',
+        ],
+        'reservation_action' => [
+            'subject_confirmed' => 'Reserva Confirmada',
+            'subject_rejected' => 'Reserva No Disponible',
+            'title_confirmed' => 'Reserva Confirmada',
+            'title_rejected' => 'Reserva No Disponible',
+            'message_confirmed' => 'Hola :name,<br>Tu reserva ha sido confirmada con éxito. ¡Te esperamos!',
+            'message_rejected' => 'Hola :name,<br>Lo sentimos, pero no podemos confirmar tu reserva para la fecha solicitada debido a falta de disponibilidad.',
+            'message_rejected_sub' => 'Te invitamos a probar otra fecha u hora llamándonos directamente.',
+            'labels' => [
+                'day' => 'Día',
+                'time' => 'Hora',
+                'persons' => 'Personas',
+                'address' => 'Dirección',
+            ],
+            'calendar_intro' => 'Añádelo a tu calendario:',
+            'contact_button' => 'Contactar Restaurante',
+            'footer' => 'Todos los derechos reservados.',
+        ],
+        'order_summary' => [
+            'subject' => 'Nuevo Pedido Recibido',
+        ]
+    ],
+    'calendar' => [
+        'event_title' => 'Reserva Restaurante',
+        'event_description' => "Reserva confirmada para :persons personas.\nNombre: :name",
+        'ics_description' => 'Reserva confirmada para :persons personas.',
+    ],
+];

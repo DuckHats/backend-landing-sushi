@@ -117,6 +117,8 @@ return [
     'client' => [
         'address' => 'client@example.com',
         'name' => 'Client',
+        'address' => 'Calle Falsa 123, Ciudad, País',
+        'phone' => '912345678',
     ],
 
 ];

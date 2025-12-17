@@ -9,6 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Reservation;
+use App\Services\CalendarService;
 
 class ReservationActionMail extends Mailable
 {
@@ -28,8 +29,16 @@ class ReservationActionMail extends Mailable
 
     public function content(): Content
     {
+        $googleCalendarLink = null;
+        if ($this->actionStatus === 'confirmed') {
+            $googleCalendarLink = app(CalendarService::class)->generateGoogleCalendarLink($this->reservation);
+        }
+
         return new Content(
             view: 'emails.reservation_action',
+            with: [
+                'googleCalendarLink' => $googleCalendarLink,
+            ],
         );
     }
 

@@ -38,7 +38,7 @@ class ReservationController extends Controller
         Mail::to($adminEmail)->send(new ReservationRequestMail($reservation));
 
         return response()->json([
-            'message' => 'Reserva sol·licitada correctament. Rebràs confirmació per email.',
+            'message' => config('app_texts.reservation.success'),
             'status' => 'success'
         ], 201);
     }
@@ -48,18 +48,30 @@ class ReservationController extends Controller
         $reservation = Reservation::where('token', $token)->firstOrFail();
 
         if ($reservation->expires_at < now()) {
-            return "Aquesta sol·licitud ha caducat.";
+            return view('reservation_feedback', [
+                'title' => config('app_texts.reservation.feedback.expired_title'),
+                'message' => config('app_texts.reservation.feedback.expired_message'),
+                'icon' => '⏳'
+            ]);
         }
 
         if ($reservation->status !== 'pending') {
-            return "Aquesta reserva ja ha estat gestionada ({$reservation->status}).";
+            return view('reservation_feedback', [
+                'title' => 'Ja Gestionada',
+                'message' => "Aquesta reserva ja ha estat gestionada ({$reservation->status}).",
+                'icon' => 'ℹ️'
+            ]);
         }
 
         $reservation->update(['status' => 'confirmed']);
 
         Mail::to($reservation->email)->send(new ReservationActionMail($reservation, 'confirmed'));
 
-        return "Reserva CONFIRMADA. S'ha enviat un correu al client.";
+        return view('reservation_feedback', [
+            'title' => config('app_texts.reservation.feedback.confirmed_title'),
+            'message' => config('app_texts.reservation.feedback.confirmed_message'),
+            'icon' => '✅'
+        ]);
     }
 
     public function reject($token)
@@ -67,17 +79,44 @@ class ReservationController extends Controller
         $reservation = Reservation::where('token', $token)->firstOrFail();
 
         if ($reservation->expires_at < now()) {
-            return "Aquesta sol·licitud ha caducat.";
+            return view('reservation_feedback', [
+                'title' => 'Enlace Caducado',
+                'message' => 'Esta solicitud ha caducado y ya no se puede procesar.',
+                'icon' => '⏳'
+            ]);
         }
 
         if ($reservation->status !== 'pending') {
-            return "Aquesta reserva ja ha estat gestionada ({$reservation->status}).";
+            return view('reservation_feedback', [
+                'title' => 'Ja Gestionada',
+                'message' => "Aquesta reserva ja ha estat gestionada ({$reservation->status}).",
+                'icon' => 'ℹ️'
+            ]);
         }
 
         $reservation->update(['status' => 'rejected']);
 
         Mail::to($reservation->email)->send(new ReservationActionMail($reservation, 'rejected'));
 
-        return "Reserva REBUTJADA. S'ha enviat un correu al client.";
+        return view('reservation_feedback', [
+            'title' => config('app_texts.reservation.feedback.rejected_title'),
+            'message' => config('app_texts.reservation.feedback.rejected_message'),
+            'icon' => '🚫'
+        ]);
+    }
+
+    public function downloadIcs($token, \App\Services\CalendarService $calendarService)
+    {
+        $reservation = Reservation::where('token', $token)->firstOrFail();
+
+        if ($reservation->status !== 'confirmed') {
+            abort(404);
+        }
+
+        $icsContent = $calendarService->generateIcsContent($reservation);
+
+        return response($icsContent)
+            ->header('Content-Type', 'text/calendar; charset=utf-8')
+            ->header('Content-Disposition', 'attachment; filename="reserva.ics"');
     }
 }

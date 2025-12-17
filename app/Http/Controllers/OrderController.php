@@ -12,11 +12,7 @@ use Illuminate\Http\JsonResponse;
 
 class OrderController extends Controller
 {
-    private array $productPrices = [
-        1 => 10.00,
-        2 => 5.50,
-        3 => 12.99,
-    ];
+    private array $productPrices = [];
 
     public function store(StoreOrderRequest $request): JsonResponse
     {
@@ -56,9 +52,17 @@ class OrderController extends Controller
 
     private function calculateTotal(array $products): float
     {
+        $productsJson = file_get_contents(database_path('products.json'));
+        $productsData = json_decode($productsJson, true);
+
+        $priceMap = [];
+        foreach ($productsData as $id => $data) {
+            $priceMap[$id] = $data['price'];
+        }
+
         $total = 0.0;
         foreach ($products as $item) {
-            $price = $this->productPrices[$item['id']] ?? 0.0; // Default to 0 if ID not found
+            $price = $priceMap[$item['id']] ?? 0.0;
             $total += $price * $item['quantity'];
         }
         return $total;
