@@ -62,6 +62,27 @@ return [
         ],
         'order_summary' => [
             'subject' => 'Nuevo Pedido Recibido',
+            'title' => 'Nuevo Pedido a Domicilio',
+            'sections' => [
+                'client_data' => 'Datos del Cliente',
+                'order_details' => 'Detalle del Pedido',
+            ],
+            'labels' => [
+                'name' => 'Nombre',
+                'email' => 'Email',
+                'phone' => 'Teléfono',
+                'address' => 'Dirección de Entrega',
+                'payment_method' => 'Método de Pago',
+                'product' => 'Producto',
+                'quantity' => 'Cant.',
+                'id' => 'ID',
+                'total' => 'Total Estimado',
+            ],
+            'payment_methods' => [
+                'card' => 'Tarjeta (Datáfono)',
+                'cash' => 'Efectivo',
+            ],
+            'footer' => 'Restaurant App.',
         ]
     ],
     'calendar' => [
