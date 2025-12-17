@@ -22,8 +22,12 @@ class ReservationActionMail extends Mailable
 
     public function envelope(): Envelope
     {
+        $subject = ($this->actionStatus === 'confirmed')
+            ? config('app_texts.emails.reservation_action.subject_confirmed')
+            : config('app_texts.emails.reservation_action.subject_rejected');
+
         return new Envelope(
-            subject: 'Estat de la teva reserva - ' . config('app.name'),
+            subject: $subject . ' - ' . config('app.name'),
         );
     }
 

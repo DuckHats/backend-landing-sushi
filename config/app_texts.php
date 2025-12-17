@@ -90,4 +90,16 @@ return [
         'event_description' => "Reserva confirmada para :persons personas.\nNombre: :name",
         'ics_description' => 'Reserva confirmada para :persons personas.',
     ],
+    'ui' => [
+        'welcome' => [
+            'reservation_card_title' => 'Reserva Mesa',
+            'reservation_card_description' => 'Endpoint para la gestión de reservas con confirmación por correo y validación de tokens.',
+            'delivery_card_title' => 'Comandas a Domicilio',
+            'delivery_card_description' => 'Endpoint para la recepción de pedidos con cálculo de totales y notificaciones al administrador.',
+            'status_checking' => 'Comprobando sistema...',
+            'status_operational' => 'Sistema operativo',
+            'status_unavailable' => 'Sistema no disponible',
+            'status_api_error' => 'Error en la API',
+        ],
+    ],
 ];

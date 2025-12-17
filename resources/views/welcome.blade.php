@@ -65,8 +65,8 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg>
                         </div>
-                        <h2 class="text-2xl font-bold text-brand-black mb-2">Reserva Mesa</h2>
-                        <p class="text-gray-500 mb-6">Endpoint per a la gestió de reserves amb confirmació per correu i validació de tokens.</p>
+                        <h2 class="text-2xl font-bold text-brand-black mb-2">{{ config('app_texts.ui.welcome.reservation_card_title') }}</h2>
+                        <p class="text-gray-500 mb-6">{{ config('app_texts.ui.welcome.reservation_card_description') }}</p>
                         <div class="bg-gray-50 rounded-xl p-4 font-mono text-sm text-gray-600 border border-gray-100">
                             <span class="text-brand-red font-bold">POST</span> /api/reservations
                         </div>
@@ -79,8 +79,8 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                         </div>
-                        <h2 class="text-2xl font-bold text-brand-black mb-2">Comandes a Domicilio</h2>
-                        <p class="text-gray-500 mb-6">Endpoint per a la recepció de comandes amb càlcul de totals i notificacions admin.</p>
+                        <h2 class="text-2xl font-bold text-brand-black mb-2">{{ config('app_texts.ui.welcome.delivery_card_title') }}</h2>
+                        <p class="text-gray-500 mb-6">{{ config('app_texts.ui.welcome.delivery_card_description') }}</p>
                         <div class="bg-gray-50 rounded-xl p-4 font-mono text-sm text-gray-600 border border-gray-100">
                             <span class="text-brand-red font-bold">POST</span> /api/delivery-orders
                         </div>
@@ -91,7 +91,7 @@
                 <div class="mt-16 text-center">
                     <div id="status-badge" class="inline-flex items-center px-4 py-2 rounded-full bg-gray-100 text-gray-500 font-medium text-sm transition-colors duration-500">
                         <span id="status-dot" class="w-2 h-2 bg-gray-400 rounded-full mr-2"></span>
-                        <span id="status-text">Checking System...</span>
+                        <span id="status-text">{{ config('app_texts.ui.welcome.status_checking') }}</span>
                     </div>
                     <p class="mt-4 text-gray-400 text-sm">
                         Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
@@ -115,9 +115,9 @@
                             dot.classList.remove('bg-gray-400');
                             dot.classList.add('bg-brand-green', 'animate-pulse');
                             
-                            text.textContent = 'System Operational';
+                            text.textContent = '{{ config('app_texts.ui.welcome.status_operational') }}';
                         } else {
-                            throw new Error('API Error');
+                            throw new Error('{{ config('app_texts.ui.welcome.status_api_error') }}');
                         }
                     })
                     .catch(error => {
@@ -127,7 +127,7 @@
                         dot.classList.remove('bg-gray-400');
                         dot.classList.add('bg-brand-red');
                         
-                        text.textContent = 'System Unavailable';
+                        text.textContent = '{{ config('app_texts.ui.welcome.status_unavailable') }}';
                         console.error('Health check failed:', error);
                     });
             });

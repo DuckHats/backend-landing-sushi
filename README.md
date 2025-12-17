@@ -13,7 +13,7 @@ curl -X POST http://landing-back.test/api/reservations \
 }'
 ```
 
-Expected Result: JSON { "message": "Reserva sol·licitada correctament...", "status": "success" } and an email logged/sent to Admin.
+Expected Result: JSON { "message": "Reserva solicitada correctamente...", "status": "success" } and an email logged/sent to Admin.
 
 ```bash
 curl -X POST http://landing-back.test/api/delivery-orders \
@@ -33,6 +33,6 @@ curl -X POST http://landing-back.test/api/delivery-orders \
 }'
 ```
 
-Expected Result: JSON { "message": "Comanda rebuda correctament!", ... } and an email logged/sent to Admin.
+Expected Result: JSON { "message": "Pedido recibido correctamente!", ... } and an email logged/sent to Admin.
 
-Add "honey_pot": "im_a_bot" to the payload. Expected Result: 422 Unprocessable Entity or JSON { "message": "Spam detected" }.
+Add "honey_pot": "im_a_bot" to the payload. Expected Result: 422 Unprocessable Entity or JSON { "message": "Spam detectado" }.

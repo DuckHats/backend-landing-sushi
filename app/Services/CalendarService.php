@@ -19,9 +19,9 @@ class CalendarService
 
         $params = [
             'action' => 'TEMPLATE',
-            'text' => 'Reserva Restaurante - ' . $reservation->persons . ' personas',
+            'text' => config('app_texts.calendar.event_title') . ' - ' . $reservation->persons . ' personas',
             'dates' => "{$startTime}/{$endTime}",
-            'details' => "Reserva confirmada para {$reservation->persons} personas.\nNombre: {$reservation->name}",
+            'details' => str_replace([':persons', ':name'], [$reservation->persons, $reservation->name], config('app_texts.calendar.event_description')),
             'location' => config('mail.client.address'),
             'sf' => 'true',
             'output' => 'xml',
@@ -41,9 +41,9 @@ class CalendarService
         $now = now()->format('Ymd\THis\Z');
         $uuid = $reservation->token . '@' . request()->getHost();
 
-        $description = "Reserva confirmada para {$reservation->persons} personas.";
-        $summary = "Reserva Restaurante";
-        $location = config('mail.client.address');
+    $description = str_replace(':persons', $reservation->persons, config('app_texts.calendar.ics_description'));
+    $summary = config('app_texts.calendar.event_title');
+    $location = config('mail.client.address');
 
         // Escape special characters for ICS
         $description = addcslashes($description, "\n,;\\");

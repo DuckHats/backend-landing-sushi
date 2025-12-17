@@ -17,7 +17,7 @@ class ReservationController extends Controller
     public function store(StoreReservationRequest $request): JsonResponse
     {
         if (!empty($request->honey_pot)) {
-            return response()->json(['message' => 'Spam detected'], 422);
+            return response()->json(['message' => config('app_texts.reservation.spam_detected')], 422);
         }
 
         $validated = $request->validated();
@@ -57,8 +57,8 @@ class ReservationController extends Controller
 
         if ($reservation->status !== 'pending') {
             return view('reservation_feedback', [
-                'title' => 'Ja Gestionada',
-                'message' => "Aquesta reserva ja ha estat gestionada ({$reservation->status}).",
+                'title' => config('app_texts.reservation.feedback.handled_title'),
+                'message' => config('app_texts.reservation.feedback.handled_message', ['status' => $reservation->status]),
                 'icon' => 'ℹ️'
             ]);
         }
@@ -80,16 +80,16 @@ class ReservationController extends Controller
 
         if ($reservation->expires_at < now()) {
             return view('reservation_feedback', [
-                'title' => 'Enlace Caducado',
-                'message' => 'Esta solicitud ha caducado y ya no se puede procesar.',
+                'title' => config('app_texts.reservation.feedback.expired_title'),
+                'message' => config('app_texts.reservation.feedback.expired_message'),
                 'icon' => '⏳'
             ]);
         }
 
         if ($reservation->status !== 'pending') {
             return view('reservation_feedback', [
-                'title' => 'Ja Gestionada',
-                'message' => "Aquesta reserva ja ha estat gestionada ({$reservation->status}).",
+                'title' => config('app_texts.reservation.feedback.handled_title'),
+                'message' => config('app_texts.reservation.feedback.handled_message', ['status' => $reservation->status]),
                 'icon' => 'ℹ️'
             ]);
         }

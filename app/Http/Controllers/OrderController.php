@@ -17,7 +17,7 @@ class OrderController extends Controller
     public function store(StoreOrderRequest $request): JsonResponse
     {
         if (!empty($request->honey_pot)) {
-            return response()->json(['message' => 'Spam detected'], 422);
+            return response()->json(['message' => config('app_texts.order.spam_detected')], 422);
         }
 
         $validated = $request->validated();
@@ -44,7 +44,7 @@ class OrderController extends Controller
         Mail::to($adminEmail)->send(new OrderSummaryMail($order));
 
         return response()->json([
-            'message' => 'Comanda rebuda correctament!',
+            'message' => config('app_texts.order.success'),
             'status' => 'success',
             'order_id' => $order->id
         ], 201);

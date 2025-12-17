@@ -20,8 +20,17 @@ Route::post('/delivery-orders', [OrderController::class, 'store'])
 Route::get('/health', function () {
     try {
         DB::connection()->getPdo();
-        return response()->json(['status' => 'operational', 'database' => 'connected']);
+        return response()->json([
+            'status' => 'operational',
+            'database' => 'connected',
+            'message' => config('app_texts.ui.welcome.status_operational')
+        ]);
     } catch (\Exception $e) {
-        return response()->json(['status' => 'error', 'database' => 'disconnected', 'error' => $e->getMessage()], 500);
+        return response()->json([
+            'status' => 'error',
+            'database' => 'disconnected',
+            'error' => $e->getMessage(),
+            'message' => config('app_texts.ui.welcome.status_unavailable')
+        ], 500);
     }
 });
