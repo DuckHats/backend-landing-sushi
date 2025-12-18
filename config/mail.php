@@ -115,10 +115,10 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
     'client' => [
-        'email' => 'client@example.com',
-        'name' => 'Client',
-        'address' => 'Calle Falsa 123, Ciudad, País',
-        'phone' => '912345678',
+        'email' => 'sudokusushibar@gmail.com',
+        'name' => 'Sudoku Sushi',
+        'address' => 'C/ Oviedo 50, Girona, 17005',
+        'phone' => '640589007',
     ],
 
 ];
