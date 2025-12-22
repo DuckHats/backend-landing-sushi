@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreReservationRequest;
 use App\Models\Reservation;
 use App\Mail\ReservationRequestMail;
+use App\Mail\ReservationClientReceiptMail;
 use App\Mail\ReservationActionMail;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
@@ -36,6 +37,7 @@ class ReservationController extends Controller
 
         $adminEmail = config('mail.client.email');
         Mail::to($adminEmail)->send(new ReservationRequestMail($reservation));
+        Mail::to($reservation->email)->send(new ReservationClientReceiptMail($reservation));
 
         return response()->json([
             'message' => config('app_texts.reservation.success'),

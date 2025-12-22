@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreOrderRequest;
 use App\Models\Order;
 use App\Mail\OrderSummaryMail;
+use App\Mail\OrderClientReceiptMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\JsonResponse;
 
@@ -42,6 +43,7 @@ class OrderController extends Controller
 
         $adminEmail = config('mail.client.email');
         Mail::to($adminEmail)->send(new OrderSummaryMail($order));
+        Mail::to($order->email)->send(new OrderClientReceiptMail($order));
 
         return response()->json([
             'message' => config('app_texts.order.success'),

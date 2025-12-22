@@ -83,6 +83,32 @@ return [
                 'cash' => 'Efectivo',
             ],
             'footer' => 'Restaurant App.',
+        ],
+        'reservation_client_receipt' => [
+            'subject' => 'Hemos recibido tu solicitud de reserva',
+            'title' => 'Reserva Recibida',
+            'intro' => 'Hola :name,<br>Hemos recibido correctamente tu solicitud de reserva. En cuanto el restaurante la confirme, recibirás un correo de confirmación.',
+            'labels' => [
+                'date' => 'Fecha',
+                'time' => 'Hora',
+                'persons' => 'Personas',
+            ],
+            'footer' => 'Gracias por confiar en nosotros.',
+        ],
+        'order_client_receipt' => [
+            'subject' => 'Resumen de tu pedido',
+            'title' => 'Pedido Recibido',
+            'intro' => 'Hola :name,<br>¡Gracias por tu pedido! Aquí tienes un resumen de lo que has pedido. Recibirás una confirmación cuando el restaurante empiece a prepararlo.',
+            'sections' => [
+                'details' => 'Detalles del Pedido',
+                'summary' => 'Resumen del Pedido',
+            ],
+            'labels' => [
+                'address' => 'Dirección de entrega',
+                'payment' => 'Método de pago',
+                'total' => 'Total del pedido',
+            ],
+            'footer' => '¡Disfruta de tu comida!',
         ]
     ],
     'calendar' => [
