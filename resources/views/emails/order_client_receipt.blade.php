@@ -8,73 +8,117 @@
 </head>
 
 <body
-    style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; line-height: 1.6;">
+    style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #2D0708; margin: 0; padding: 20px; -webkit-font-smoothing: antialiased; line-height: 1.6;">
     <div
-        style="max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
-        <div style="background-color: #722022; color: #ffffff; padding: 40px 30px; text-align: center;">
-            <h1 style="margin: 0; font-size: 24px; font-weight: 600;">🍣
-                {{ config('app_texts.emails.order_client_receipt.title') }}</h1>
+        style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 24px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+        {{-- Header --}}
+        <div
+            style="background-color: #722022; background-image: linear-gradient(135deg, #722022 0%, #4a1517 100%); color: #ffffff; padding: 50px 40px; text-align: center;">
+            <div style="font-size: 48px; margin-bottom: 10px;">🍣</div>
+            <h1 style="margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -0.5px; color: #EAECDB;">
+                {{ config('app_texts.emails.order_client_receipt.title') }}
+            </h1>
+            <p style="margin: 10px 0 0; font-size: 16px; opacity: 0.9; color: #EAECDB;">
+                #{{ str_pad($order->id, 5, '0', STR_PAD_LEFT) }}</p>
         </div>
-        <div style="padding: 40px 30px; color: #1B1B1E;">
-            <p style="font-size: 16px; margin-bottom: 30px; color: #555;">{!! config('app_texts.emails.order_client_receipt.intro', ['name' => $order->name]) !!}</p>
 
+        {{-- Content --}}
+        <div style="padding: 40px; color: #1B1B1E;">
+            <div style="font-size: 18px; margin-bottom: 30px; color: #333; font-weight: 500;">
+                {!! config('app_texts.emails.order_client_receipt.intro', ['name' => $order->name]) !!}
+            </div>
+
+            {{-- Shipping/Payment Details --}}
             <div
-                style="color: #722022; font-size: 16px; font-weight: 700; border-bottom: 2px solid #EAECDB; padding-bottom: 10px; margin-top: 30px; margin-bottom: 20px; text-transform: uppercase;">
-                {{ config('app_texts.emails.order_client_receipt.sections.details') }}
+                style="background-color: #F9FAFB; border-radius: 16px; padding: 25px; margin-bottom: 35px; border: 1px solid #E5E7EB;">
+                <div style="display: flex; margin-bottom: 20px;">
+                    <div style="flex: 1;">
+                        <span
+                            style="font-size: 11px; color: #6B7280; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; display: block; margin-bottom: 6px;">
+                            {{ config('app_texts.emails.order_client_receipt.labels.address') }}
+                        </span>
+                        <span
+                            style="font-size: 14px; color: #111827; font-weight: 600; line-height: 1.4;">{{ $order->address }}</span>
+                    </div>
+                </div>
+                <div>
+                    <span
+                        style="font-size: 11px; color: #6B7280; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; display: block; margin-bottom: 6px;">
+                        {{ config('app_texts.emails.order_client_receipt.labels.payment') }}
+                    </span>
+                    <span
+                        style="display: inline-block; background-color: #722022; color: #ffffff; padding: 4px 12px; border-radius: 9999px; font-size: 12px; font-weight: 700; text-transform: uppercase;">
+                        {{ $order->payment_method === 'card' ? config('app_texts.emails.order_summary.payment_methods.card') : config('app_texts.emails.order_summary.payment_methods.cash') }}
+                    </span>
+                </div>
             </div>
 
-            <div style="margin-bottom: 10px;">
-                <span
-                    style="font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">{{ config('app_texts.emails.order_client_receipt.labels.address') }}</span>
-                <span style="font-size: 16px; font-weight: 500; color: #1B1B1E;">{{ $order->address }}</span>
-            </div>
-            <div style="margin-bottom: 10px;">
-                <span
-                    style="font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">{{ config('app_texts.emails.order_client_receipt.labels.payment') }}</span>
-                <span style="font-size: 16px; text-transform: uppercase; font-weight: 700; color: #722022;">
-                    {{ $order->payment_method === 'card_on_delivery' ? config('app_texts.emails.order_summary.payment_methods.card') : config('app_texts.emails.order_summary.payment_methods.cash') }}
-                </span>
-            </div>
-
-            <div
-                style="color: #722022; font-size: 16px; font-weight: 700; border-bottom: 2px solid #EAECDB; padding-bottom: 10px; margin-top: 30px; margin-bottom: 20px; text-transform: uppercase;">
+            {{-- Products Table --}}
+            <h3
+                style="font-size: 16px; font-weight: 700; color: #722022; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; border-bottom: 2px solid #F3F4F6; padding-bottom: 10px;">
                 {{ config('app_texts.emails.order_client_receipt.sections.summary') }}
-            </div>
+            </h3>
 
-            <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+            <table style="width: 100%; border-collapse: collapse;">
                 <thead>
-                    <tr>
-                        <th width="70%"
-                            style="text-align: left; color: #888; font-size: 12px; padding: 10px; border-bottom: 1px solid #eee;">
+                    <tr style="border-bottom: 1px solid #E5E7EB;">
+                        <th
+                            style="padding: 12px 0; text-align: left; font-size: 12px; color: #6B7280; text-transform: uppercase; font-weight: 600;">
                             {{ config('app_texts.emails.order_summary.labels.product') }}</th>
-                        <th width="30%"
-                            style="text-align: center; color: #888; font-size: 12px; padding: 10px; border-bottom: 1px solid #eee;">
+                        <th
+                            style="padding: 12px 0; text-align: center; font-size: 12px; color: #6B7280; text-transform: uppercase; font-weight: 600;">
                             {{ config('app_texts.emails.order_summary.labels.quantity') }}</th>
+                        <th
+                            style="padding: 12px 0; text-align: right; font-size: 12px; color: #6B7280; text-transform: uppercase; font-weight: 600;">
+                            Total</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($order->products as $item)
-                        <tr>
-                            <td style="padding: 15px 10px; border-bottom: 1px solid #f5f5f5;">
-                                <strong>{{ config('app_texts.emails.order_summary.labels.product') }}
-                                    #{{ $item['id'] }}</strong></td>
-                            <td style="text-align: center; padding: 15px 10px; border-bottom: 1px solid #f5f5f5;">
-                                x{{ $item['quantity'] }}</td>
+                        <tr style="border-bottom: 1px solid #F3F4F6;">
+                            <td style="padding: 16px 0;">
+                                <div style="font-weight: 700; color: #111827; font-size: 15px;">{{ $item['name'] }}</div>
+                                <div style="font-size: 13px; color: #6B7280; margin-top: 2px;">
+                                    {{ number_format($item['price'], 2) }}€ / ud.</div>
+                            </td>
+                            <td style="padding: 16px 0; text-align: center; color: #111827; font-weight: 600;">
+                                x{{ $item['quantity'] }}
+                            </td>
+                            <td style="padding: 16px 0; text-align: right; font-weight: 700; color: #111827;">
+                                {{ number_format($item['subtotal'], 2) }}€
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
 
+            {{-- Total Section --}}
             <div
-                style="background-color: #8A9556; color: white; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: right;">
-                <div style="font-size: 14px; opacity: 0.9;">
-                    {{ config('app_texts.emails.order_client_receipt.labels.total') }}</div>
-                <div style="font-size: 24px; font-weight: 700;">{{ number_format($order->total, 2) }} €</div>
+                style="margin-top: 30px; background: linear-gradient(to right, #8A9556, #6d7644); color: #ffffff; padding: 25px; border-radius: 16px; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <span
+                        style="display: block; font-size: 12px; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; opacity: 0.9;">
+                        {{ config('app_texts.emails.order_client_receipt.labels.total') }}
+                    </span>
+                    <span style="display: block; font-size: 32px; font-weight: 800; line-height: 1;">
+                        {{ number_format($order->total, 2) }} €
+                    </span>
+                </div>
+                <div
+                    style="background-color: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 12px; font-size: 14px; font-weight: 600; border: 1px solid rgba(255,255,255,0.3);">
+                    Confirmado ✓
+                </div>
             </div>
         </div>
-        <div style="background-color: #1B1B1E; padding: 25px; text-align: center; font-size: 12px; color: #666;">
-            &copy; {{ date('Y') }} {{ config('app.name') }}.
-            {{ config('app_texts.emails.order_client_receipt.footer') }}
+
+        {{-- Footer --}}
+        <div style="background-color: #F9FAFB; padding: 30px; text-align: center; border-top: 1px solid #E5E7EB;">
+            <p style="margin: 0; font-size: 14px; font-weight: 700; color: #374151; margin-bottom: 8px;">
+                {{ config('app_texts.emails.order_client_receipt.footer') }}
+            </p>
+            <p style="margin: 0; font-size: 12px; color: #9CA3AF;">
+                &copy; {{ date('Y') }} {{ config('app.name') }}. Todos los derechos reservados.
+            </p>
         </div>
     </div>
 </body>

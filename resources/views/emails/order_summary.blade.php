@@ -1,74 +1,102 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ config('app_texts.emails.order_summary.subject') }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ config('app_texts.emails.order_summary.subject') }}</title>
 </head>
-<body style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; line-height: 1.6;">
-    <div style="max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
-        <div style="background-color: #722022; color: #ffffff; padding: 40px 30px; text-align: center;">
-            <h1 style="margin: 0; font-size: 24px; font-weight: 600;">🛵 {{ config('app_texts.emails.order_summary.title') }}</h1>
+
+<body
+    style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #F3F4F6; margin: 0; padding: 20px; -webkit-font-smoothing: antialiased; line-height: 1.6;">
+    <div
+        style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 24px; overflow: hidden; box-shadow: 0 4px 25px rgba(0,0,0,0.05); border: 1px solid #E5E7EB;">
+        {{-- Header --}}
+        <div style="background-color: #722022; color: #ffffff; padding: 40px; text-align: center;">
+            <div style="font-size: 40px; margin-bottom: 10px;">🛵</div>
+            <h1 style="margin: 0; font-size: 24px; font-weight: 800; letter-spacing: -0.5px; color: #EAECDB;">
+                {{ config('app_texts.emails.order_summary.title') }}
+            </h1>
+            <div style="margin-top: 10px; display: inline-block; background-color: rgba(255,255,255,0.1); padding: 4px 12px; border-radius: 8px; font-size: 13px; font-weight: 600;">
+                Pedido #{{ str_pad($order->id, 5, '0', STR_PAD_LEFT) }}
+            </div>
         </div>
-        <div style="padding: 40px 30px; color: #1B1B1E;">
-            <div style="color: #722022; font-size: 16px; font-weight: 700; border-bottom: 2px solid #EAECDB; padding-bottom: 10px; margin-top: 30px; margin-bottom: 20px; text-transform: uppercase;">
+
+        {{-- Content --}}
+        <div style="padding: 40px; color: #1B1B1E;">
+            {{-- Client Section --}}
+            <h3 style="font-size: 14px; font-weight: 700; color: #722022; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; border-bottom: 2px solid #F3F4F6; padding-bottom: 8px;">
                 {{ config('app_texts.emails.order_summary.sections.client_data') }}
-            </div>
-            
-            <div style="margin-bottom: 10px;">
-                <span style="font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">{{ config('app_texts.emails.order_summary.labels.name') }}</span>
-                <span style="font-size: 16px; font-weight: 500; color: #1B1B1E;">{{ $order->name }}</span>
-            </div>
-            <div style="margin-bottom: 10px;">
-                <span style="font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">{{ config('app_texts.emails.order_summary.labels.email') }}</span>
-                <span style="font-size: 16px; font-weight: 500; color: #1B1B1E;">{{ $order->email }}</span>
-            </div>
-            <div style="margin-bottom: 10px;">
-                <span style="font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">{{ config('app_texts.emails.order_summary.labels.phone') }}</span>
-                <span style="font-size: 16px; font-weight: 500; color: #1B1B1E;">{{ $order->phone }}</span>
-            </div>
-            <div style="margin-bottom: 10px;">
-                <span style="font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">{{ config('app_texts.emails.order_summary.labels.address') }}</span>
-                <span style="font-size: 16px; font-weight: 500; color: #1B1B1E;">{{ $order->address }}</span>
-            </div>
-            <div style="margin-bottom: 10px;">
-                <span style="font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">{{ config('app_texts.emails.order_summary.labels.payment_method') }}</span>
-                <span style="font-size: 16px; text-transform: uppercase; font-weight: 700; color: #722022;">
-                    {{ $order->payment_method === 'card_on_delivery' ? config('app_texts.emails.order_summary.payment_methods.card') : config('app_texts.emails.order_summary.payment_methods.cash') }}
-                </span>
+            </h3>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 35px;">
+                <div style="margin-bottom: 15px;">
+                    <span style="font-size: 11px; color: #6B7280; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">{{ config('app_texts.emails.order_summary.labels.name') }}</span>
+                    <span style="font-size: 15px; font-weight: 600; color: #111827;">{{ $order->name }}</span>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <span style="font-size: 11px; color: #6B7280; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">{{ config('app_texts.emails.order_summary.labels.phone') }}</span>
+                    <span style="font-size: 15px; font-weight: 600; color: #111827;">{{ $order->phone }}</span>
+                </div>
+                <div style="margin-bottom: 15px; grid-column: span 2;">
+                    <span style="font-size: 11px; color: #6B7280; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">{{ config('app_texts.emails.order_summary.labels.address') }}</span>
+                    <span style="font-size: 15px; font-weight: 600; color: #111827;">{{ $order->address }}</span>
+                </div>
+                <div style="grid-column: span 2;">
+                    <span style="font-size: 11px; color: #6B7280; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">{{ config('app_texts.emails.order_summary.labels.payment_method') }}</span>
+                    <span style="display: inline-block; background-color: #F3F4F6; color: #722022; padding: 4px 12px; border-radius: 8px; font-size: 13px; font-weight: 700;">
+                        {{ $order->payment_method === 'card' ? config('app_texts.emails.order_summary.payment_methods.card') : config('app_texts.emails.order_summary.payment_methods.cash') }}
+                    </span>
+                </div>
             </div>
 
-            <div style="color: #722022; font-size: 16px; font-weight: 700; border-bottom: 2px solid #EAECDB; padding-bottom: 10px; margin-top: 30px; margin-bottom: 20px; text-transform: uppercase;">
+            {{-- Order Details Section --}}
+            <h3 style="font-size: 14px; font-weight: 700; color: #722022; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; border-bottom: 2px solid #F3F4F6; padding-bottom: 8px;">
                 {{ config('app_texts.emails.order_summary.sections.order_details') }}
-            </div>
-            
-            <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+            </h3>
+
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px;">
                 <thead>
-                    <tr>
-                        <th width="70%" style="text-align: left; color: #888; font-size: 12px; padding: 10px; border-bottom: 1px solid #eee;">{{ config('app_texts.emails.order_summary.labels.product') }}</th>
-                        <th width="15%" style="text-align: center; color: #888; font-size: 12px; padding: 10px; border-bottom: 1px solid #eee;">{{ config('app_texts.emails.order_summary.labels.quantity') }}</th>
-                        <th width="15%" style="text-align: right; color: #888; font-size: 12px; padding: 10px; border-bottom: 1px solid #eee;">{{ config('app_texts.emails.order_summary.labels.id') }}</th>
+                    <tr style="border-bottom: 1px solid #E5E7EB;">
+                        <th style="padding: 12px 0; text-align: left; font-size: 11px; color: #6B7280; text-transform: uppercase; font-weight: 700;">Producto</th>
+                        <th style="padding: 12px 0; text-align: center; font-size: 11px; color: #6B7280; text-transform: uppercase; font-weight: 700;">Cant.</th>
+                        <th style="padding: 12px 0; text-align: right; font-size: 11px; color: #6B7280; text-transform: uppercase; font-weight: 700;">Total</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($order->products as $item)
-                    <tr>
-                        <td style="padding: 15px 10px; border-bottom: 1px solid #f5f5f5;"><strong>{{ config('app_texts.emails.order_summary.labels.product') }} #{{ $item['id'] }}</strong></td>
-                        <td style="text-align: center; padding: 15px 10px; border-bottom: 1px solid #f5f5f5;">x{{ $item['quantity'] }}</td>
-                        <td style="text-align: right; padding: 15px 10px; border-bottom: 1px solid #f5f5f5;">#{{ $item['id'] }}</td>
+                    <tr style="border-bottom: 1px solid #F3F4F6;">
+                        <td style="padding: 16px 0;">
+                            <div style="font-weight: 700; color: #111827; font-size: 14px;">{{ $item['name'] }}</div>
+                            <div style="font-size: 12px; color: #6B7280; margin-top: 2px;">ID: #{{ $item['id'] }} | {{ number_format($item['price'], 2) }}€/u</div>
+                        </td>
+                        <td style="padding: 16px 0; text-align: center; color: #111827; font-weight: 600;">
+                            x{{ $item['quantity'] }}
+                        </td>
+                        <td style="padding: 16px 0; text-align: right; font-weight: 700; color: #111827;">
+                            {{ number_format($item['subtotal'], 2) }}€
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
 
-            <div style="background-color: #8A9556; color: white; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: right;">
-                <div style="font-size: 14px; opacity: 0.9;">{{ config('app_texts.emails.order_summary.labels.total') }}</div>
-                <div style="font-size: 24px; font-weight: 700;">{{ number_format($order->total, 2) }} €</div>
+            {{-- Summary Total --}}
+            <div style="background-color: #8A9556; border-radius: 16px; padding: 25px; color: #ffffff; text-align: right;">
+                <span style="display: block; font-size: 12px; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; opacity: 0.9; margin-bottom: 4px;">
+                    {{ config('app_texts.emails.order_summary.labels.total') }}
+                </span>
+                <span style="font-size: 32px; font-weight: 800; display: block; line-height: 1;">
+                    {{ number_format($order->total, 2) }} €
+                </span>
             </div>
         </div>
-        <div style="background-color: #1B1B1E; padding: 25px; text-align: center; font-size: 12px; color: #666;">
-            &copy; {{ date('Y') }} {{ config('app_texts.emails.order_summary.footer') }}
+
+        {{-- Footer --}}
+        <div style="background-color: #1B1B1E; padding: 25px; text-align: center; font-size: 12px; color: #9CA3AF;">
+            &copy; {{ date('Y') }} {{ config('app_texts.emails.order_summary.footer') }} | Sistema de Pedidos Online
         </div>
     </div>
 </body>
+
 </html>

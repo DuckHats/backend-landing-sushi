@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ReservationController;
 
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -16,6 +17,16 @@ Route::post('/reservations', [ReservationController::class, 'store'])
 
 Route::post('/delivery-orders', [OrderController::class, 'store'])
     ->middleware(['auth:sanctum', 'throttle:10,1']);
+
+// Product endpoints
+Route::get('/products', [ProductController::class, 'index'])
+    ->middleware(['auth:sanctum']);
+
+Route::get('/products/{id}', [ProductController::class, 'show'])
+    ->middleware(['auth:sanctum']);
+
+Route::get('/categories', [ProductController::class, 'categories'])
+    ->middleware(['auth:sanctum']);
 
 Route::get('/health', function () {
     try {

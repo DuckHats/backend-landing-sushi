@@ -8,6 +8,7 @@ use App\Http\Requests\StoreOrderRequest;
 use App\Models\Order;
 use App\Mail\OrderSummaryMail;
 use App\Mail\OrderClientReceiptMail;
+use App\Models\Product;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\JsonResponse;
 
@@ -23,7 +24,11 @@ class OrderController extends Controller
 
         $validated = $request->validated();
 
-        $total = $this->calculateTotal($validated['products']);
+        // Process products to include names and prices
+        $processedProducts = $this->processProducts($validated['products']);
+        $total = array_reduce($processedProducts, function ($carry, $item) {
+            return $carry + ($item['price'] * $item['quantity']);
+        }, 0.0);
 
         $name = strip_tags($validated['name']);
         $email = filter_var($validated['email'], FILTER_SANITIZE_EMAIL);
@@ -37,7 +42,7 @@ class OrderController extends Controller
             'phone' => $phone,
             'address' => $address,
             'payment_method' => $paymentMethod,
-            'products' => $validated['products'],
+            'products' => $processedProducts,
             'total' => $total,
         ]);
 
@@ -52,21 +57,24 @@ class OrderController extends Controller
         ], 201);
     }
 
-    private function calculateTotal(array $products): float
+    private function processProducts(array $products): array
     {
-        $productsJson = file_get_contents(database_path('products.json'));
-        $productsData = json_decode($productsJson, true);
+        $processed = [];
 
-        $priceMap = [];
-        foreach ($productsData as $id => $data) {
-            $priceMap[$id] = $data['price'];
-        }
-
-        $total = 0.0;
         foreach ($products as $item) {
-            $price = $priceMap[$item['id']] ?? 0.0;
-            $total += $price * $item['quantity'];
+            $product = Product::where('product_code', (string) $item['id'])->first();
+
+            if ($product) {
+                $processed[] = [
+                    'id' => $item['id'],
+                    'name' => $product->name,
+                    'price' => (float) $product->price,
+                    'quantity' => $item['quantity'],
+                    'subtotal' => (float) $product->price * $item['quantity'],
+                ];
+            }
         }
-        return $total;
+
+        return $processed;
     }
 }
