@@ -14,7 +14,7 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
         // Path to the menu JSON file in the frontend project
-        $jsonPath = base_path('../web_sudoku_sushi/src/data/menu.cat.json');
+        $jsonPath = storage_path('menu.cat.json');
 
         if (!File::exists($jsonPath)) {
             $this->command->error("JSON file not found at: {$jsonPath}");

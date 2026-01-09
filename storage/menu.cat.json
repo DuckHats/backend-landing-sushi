@@ -1,0 +1,610 @@
+{
+  "title": "La nostra carta",
+  "subtitle": "Filtra per producte i consulta ingredients",
+  "categories": ["Entrantes", "Arroz", "Fideos", "Rebozados", "Salteados", "Nigiris", "Makis", "California", "California Seleccion", "Temaki", "Sashimi", "Especials", "Combinados", "Postres", "Bebidas" , "Alcohol (+18)"],
+  "products": [
+    {
+      "id": 1,
+      "name": "1. Edamame",
+      "price": 5.5,
+      "category": "Entrantes",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Judías de soja",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    {
+      "id": 1.2,
+      "name": "1A. Edamame Picante",
+      "price": 6.0,
+      "category": "Entrantes",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Picante",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    {
+      "id": 2,
+      "name": "2. Ensalada de Alga",
+      "price": 6.5,
+      "category": "Entrantes",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Ensalada de alga wakame, salsa de soja y sésamo",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    { 
+      "id": 3,
+      "name": "3. Ensalada de la Casa",
+      "price": 7.5,
+      "category": "Entrantes",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Ensalada de lechuga, tomate, zanahoria, aceituna, maíz, aguacte, mango y surimi",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    { 
+      "id": 4,
+      "name": "4. Mini Rollitos (8u)",
+      "price": 5.0,
+      "category": "Entrantes",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Rollitos firtos rellenos de verduras",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    { 
+      "id": 4.2,
+      "name": "4A. Takoyaki (5u)",
+      "price": 6.75,
+      "category": "Entrantes",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Bola de masa de harina rebozada con trozos de pulpo",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    { 
+      "id": 5,
+      "name": "5. Samosa de Curry (8u)",
+      "price": 5.0,
+      "category": "Entrantes",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Empanadillas fritas en forma triangular rellenas de verduras y salsa de curry",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    { 
+      "id": 6,
+      "name": "6. Gyoza de Pollo (6u)",
+      "price": 6.5,
+      "category": "Entrantes",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Empanadas rellenas de carne picada y verduras a la plancha",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    { 
+      "id": 7,
+      "name": "7. Gyoza de Verdura (6u)",
+      "price": 6.0,
+      "category": "Entrantes",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Empanadas rellenas de verduras a la plancha",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    { 
+      "id": 7.2,
+      "name": "7A. Gyoza de Gamba (6u)",
+      "price": 7.25,
+      "category": "Entrantes",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Empanadas rellenas de gamba y verduras a la plancha",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    { 
+      "id": 8,
+      "name": "8. Wanton Frito (8u)",
+      "price": 6.5,
+      "category": "Entrantes",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Cresta rebozada con carne picada, gamba y verduras",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    { 
+      "id": 8.2,
+      "name": "8A. Pan Chino Frito (4u)",
+      "price": 3.95,
+      "category": "Entrantes",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Panecillo tradicional chino frito",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    { 
+      "id": 9,
+      "name": "9. Sopa Wanton",
+      "price": 5.50,
+      "category": "Entrantes",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Sopa de Cresta",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    { 
+      "id": 9.2,
+      "name": "9A. Sopa de Miso",
+      "price": 4.95,
+      "category": "Entrantes",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Sopa de miso con tofu, alga wakame y cebollino",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    
+
+    { 
+      "id": 10,
+      "name": "10. Arroz Blanco",
+      "price": 2.5,
+      "category": "Arroz",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    { 
+      "id": 11,
+      "name": "11. Arroz Frito Sudoku",
+      "price": 6.8,
+      "category": "Arroz",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Arroz frito con gamba, pollo, huevo y verduras",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    { 
+      "id": 12,
+      "name": "12. Arroz Tres Delicias",
+      "price": 6.2,
+      "category": "Arroz",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Arroz frito con jamón dulce, huevo, guisantes y zanahoria",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+
+
+    { 
+      "id": 13,
+      "name": "13. Tallarines Fritos Sudoku",
+      "price": 6.8,
+      "category": "Fideos",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Tallarines fritos con gamba, pollo, huevo y verduras",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    { 
+      "id": 14,
+      "name": "14. Fideos Fritos Sudoku",
+      "price": 6.8,
+      "category": "Fideos",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Fideos de arroz fritos con gamba, pollo, huevo y verduras",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    { 
+      "id": 15,
+      "name": "15. Yakisoba con pollo o ternera y verduras",
+      "price": 7.25,
+      "category": "Fideos",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    { 
+      "id": 16,
+      "name": "16. Yakisoba con gamba y verduras",
+      "price": 7.25,
+      "category": "Fideos",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    { 
+      "id": 17,
+      "name": "17. Yakiudon con pollo o ternera y verduras",
+      "price": 7.75,
+      "category": "Fideos",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    { 
+      "id": 18,
+      "name": "18. Yakiudon con gamba y verduras",
+      "price": 7.75,
+      "category": "Fideos",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    
+    
+    
+    { 
+      "id": 19,
+      "name": "19. Tempura de verduras",
+      "price": 6.80,
+      "category": "Rebozados",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    { 
+      "id": 20,
+      "name": "20. Tempura de langostinos (4u)",
+      "price": 7,
+      "category": "Rebozados",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    { 
+      "id": 21,
+      "name": "21. Tempura mixta",
+      "price": 7.5,
+      "category": "Rebozados",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Tempura de verdura y dos langostinos",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    { 
+      "id": 22,
+      "name": "22. Pollo rebozado",
+      "price": 8,
+      "category": "Rebozados",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Pechuga de pollo rebozada con salsa japonesa",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    { 
+      "id": 23,
+      "name": "23. Pollo rebozado con almendras",
+      "price": 8.5,
+      "category": "Rebozados",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Pechuga de pollo rebozada con almendras y salsa japonesa",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    { 
+      "id": 24,
+      "name": "24. Pollo rebozado al limón",
+      "price": 8.5,
+      "category": "Rebozados",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Pechuga de pollo rebozada con salsa de limón",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    { 
+      "id": 25,
+      "name": "25. Pincho de pollo (3u)",
+      "price": 5.5,
+      "category": "Rebozados",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Tempura de verdura y dos langostinos",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    { 
+      "id": 26,
+      "name": "26. Pincho de ternera (3u)",
+      "price": 6.5,
+      "category": "Rebozados",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Tempura de verdura y dos langostinos",
+      "ingredients": [""],
+      "allergens": [""]
+    },
+    {
+      "id": 27,
+      "name": "27. Ternera salteada con verduras y salsa picante",
+      "price": 9.50,
+      "category": "Salteados",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Ternera tierna salteada con verduras frescas y una salsa picante aromática.",
+      "ingredients": ["Ternera", "Zanahoria", "Pimiento", "Cebolla", "Salsa picante", "Aceite"],
+      "allergens": [""]
+    },
+    {
+      "id": 28,
+      "name": "28. Ternera salteada con verduras y salsa de ostras",
+      "price": 9.50,
+      "category": "Salteados",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Ternera salteada con verduras variadas y un toque de salsa de ostras.",
+      "ingredients": ["Ternera", "Zanahoria", "Pimiento", "Cebolla", "Salsa de ostras", "Aceite"],
+      "allergens": ["Moluscos"]
+    },
+    {
+      "id": 28.1,
+      "name": "28A. Ternera con bambú y setas",
+      "price": 9.50,
+      "category": "Salteados",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Salteado de ternera con brotes de bambú y setas variadas.",
+      "ingredients": ["Ternera", "Bambú", "Setas", "Aceite", "Salsa de soja"],
+      "allergens": ["Soja"]
+    },
+    {
+      "id": 28.2,
+      "name": "28B. Familia feliz",
+      "price": 10.50,
+      "category": "Salteados",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Mezcla de gambas, ternera, pollo y verduras salteadas en una deliciosa salsa.",
+      "ingredients": ["Gambas", "Ternera", "Pollo", "Zanahoria", "Pimiento", "Cebolla", "Salsa"],
+      "allergens": ["Crustáceos", "Soja"]
+    },
+    {
+      "id": 29,
+      "name": "29. Pollo salteado con verduras",
+      "price": 9.00,
+      "category": "Salteados",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Trozos de pollo salteados con verduras frescas y crujientes.",
+      "ingredients": ["Pollo", "Zanahoria", "Pimiento", "Cebolla", "Aceite", "Salsa de soja"],
+      "allergens": ["Soja"]
+    },
+    {
+      "id": 29.1,
+      "name": "29A. Pollo con bambú y setas",
+      "price": 9.00,
+      "category": "Salteados",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Salteado de pollo con brotes de bambú y setas, ligero y sabroso.",
+      "ingredients": ["Pollo", "Bambú", "Setas", "Aceite", "Salsa de soja"],
+      "allergens": ["Soja"]
+    },
+    {
+      "id": 29.2,
+      "name": "29B. Wok de pollo con almendras",
+      "price": 9.00,
+      "category": "Salteados",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Pollo salteado al wok con crujientes almendras y verduras frescas.",
+      "ingredients": ["Pollo", "Almendras", "Zanahoria", "Pimiento", "Cebolla", "Aceite", "Salsa"],
+      "allergens": ["Frutos secos"]
+    },
+    {
+      "id": 30,
+      "name": "30. Pollo teriyaki",
+      "price": 10.00,
+      "category": "Rebozados",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Bolitas de pollo rebozado bañadas en salsa teriyaki dulce y sabrosa.",
+      "ingredients": ["Pollo", "Harina", "Huevo", "Aceite", "Salsa teriyaki"],
+      "allergens": ["Gluten", "Huevos", "Soja"]
+    },
+    {
+      "id": 30.1,
+      "name": "30A. Costilla agridulce",
+      "price": 9.50,
+      "category": "Salteados",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Costillas de cerdo cocinadas en salsa agridulce, tiernas y jugosas.",
+      "ingredients": ["Costilla de cerdo", "Salsa agridulce", "Pimiento", "Piña", "Aceite"],
+      "allergens": [""]
+    },
+    {
+      "id": 30.2,
+      "name": "30B. Gambas salteadas con verduras y salsa agridulce",
+      "price": 10.50,
+      "category": "Salteados",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Gambas frescas salteadas con verduras y una delicada salsa agridulce.",
+      "ingredients": ["Gambas", "Zanahoria", "Pimiento", "Cebolla", "Salsa agridulce", "Aceite"],
+      "allergens": ["Crustáceos"]
+    },
+    {
+      "id": 30.3,
+      "name": "30C. Gambas salteadas con bambú y setas",
+      "price": 10.50,
+      "category": "Salteados",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Gambas salteadas con brotes de bambú y setas frescas.",
+      "ingredients": ["Gambas", "Bambú", "Setas", "Aceite", "Salsa de soja"],
+      "allergens": ["Crustáceos", "Soja"]
+    },
+    {
+      "id": 31,
+      "name": "31. Pato sudoku",
+      "price": 13.00,
+      "category": "Especials",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Pato asado acompañado de salsa de marisco, verduras frescas y crepes finos.",
+      "ingredients": ["Pato", "Salsa de marisco", "Zanahoria", "Pimiento", "Cebolla", "Crepes"],
+      "allergens": ["Crustáceos", "Gluten"]
+    },
+
+
+    {
+      "id": 32,
+      "name": "32. Nigiri de salmón",
+      "price": 9.00,
+      "category": "Nigiris",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Nigiri clásico con lámina de salmón fresco sobre bola de arroz sushi ligeramente avinagrada.",
+      "ingredients": ["Salmón fresco", "Arroz para sushi (arroz, vinagre de arroz, azúcar, sal)", "Wasabi opcional"],
+      "allergens": ["Pescado"]
+    },
+    {
+      "id": 33,
+      "name": "33. Nigiri de salmón flameado",
+      "price": 10.00,
+      "category": "Nigiris",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Nigiri de salmón sellado en superficie con soplete para aportar aroma ahumado y textura.",
+      "ingredients": ["Salmón fresco (ligeramente flameado)", "Arroz para sushi", "Salsa ligera (mayonesa japonesa o reducción)"],
+      "allergens": ["Pescado", "Huevos"]
+    },
+    {
+      "id": 34,
+      "name": "34. Nigiri de atún",
+      "price": 11.50,
+      "category": "Nigiris",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Nigiri de atún rojo de corte fino sobre arroz sushi, sabor limpio y textura jugosa.",
+      "ingredients": ["Atún rojo (tuna)", "Arroz para sushi", "Wasabi opcional"],
+      "allergens": ["Pescado"]
+    },
+    {
+      "id": 35,
+      "name": "35. Nigiri de langostino",
+      "price": 9.00,
+      "category": "Nigiris",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Langostino cocido sobre una base de arroz sushi, presentación tradicional.",
+      "ingredients": ["Langostino (cocido)", "Arroz para sushi", "Wasabi opcional"],
+      "allergens": ["Crustáceos"]
+    },
+    {
+      "id": 36,
+      "name": "36. Nigiri de anguila",
+      "price": 11.50,
+      "category": "Nigiris",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Anguila asada (unagi) glaseada con salsa unagi y servida sobre arroz sushi.",
+      "ingredients": ["Anguila (unagi) asada", "Arroz para sushi", "Salsa unagi (soja, azúcar, mirin)"],
+      "allergens": ["Pescado", "Soja", "Gluten"]
+    },
+    {
+      "id": 37,
+      "name": "37. Nigiri de foie gras",
+      "price": 12.50,
+      "category": "Nigiris",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Nigiri gourmet con lámina de foie gras ligeramente caramelizado sobre arroz sushi.",
+      "ingredients": ["Foie gras (hígado de pato)", "Arroz para sushi", "Reducción dulce (opcional)"],
+      "allergens": ["Lácteos"]
+    },
+    {
+      "id": 38,
+      "name": "38. Nigiri de queso brie con nueces",
+      "price": 8.50,
+      "category": "Nigiris",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Nigiri creativo con queso brie y trozos de nuez sobre arroz sushi, contraste cremoso y crujiente.",
+      "ingredients": ["Queso brie", "Nueces troceadas", "Arroz para sushi"],
+      "allergens": ["Lácteos", "Frutos secos (nueces)"]
+    },
+    {
+      "id": 39,
+      "name": "39. Nigiri de tofu",
+      "price": 8.00,
+      "category": "Nigiris",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Nigiri vegetariano con bloque de tofu marinado y ligeramente sellado sobre arroz sushi.",
+      "ingredients": ["Tofu marinado", "Arroz para sushi", "Salsa de soja (opcional)"],
+      "allergens": ["Soja"]
+    },
+    {
+      "id": 40,
+      "name": "40. Nigiri variado",
+      "price": 9.50,
+      "category": "Nigiris",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Selección variada de nigiris: salmón, atún, langostino, anguila, queso y tofu.",
+      "ingredients": ["Salmón", "Atún", "Langostino", "Anguila", "Queso (brie)", "Tofu", "Arroz para sushi"],
+      "allergens": ["Pescado", "Crustáceos", "Lácteos", "Soja"]
+    },
+    {
+      "id": 40.1,
+      "name": "40A. Nigiri mixto 1",
+      "price": 10.50,
+      "category": "Nigiris",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Pack mixto con 3 nigiris de salmón y 3 nigiris de atún.",
+      "ingredients": ["3 × Nigiri de salmón", "3 × Nigiri de atún", "Arroz para sushi"],
+      "allergens": ["Pescado"]
+    },
+    {
+      "id": 40.2,
+      "name": "40B. Nigiri mixto 2",
+      "price": 10.50,
+      "category": "Nigiris",
+      "secondaryCategory": "",
+      "image": "/foto_no_available.jpg",
+      "description": "Pack mixto con 2 nigiris de salmón, 2 nigiris de atún y 2 nigiris de langostino.",
+      "ingredients": ["2 × Nigiri de salmón", "2 × Nigiri de atún", "2 × Nigiri de langostino", "Arroz para sushi"],
+      "allergens": ["Pescado", "Crustáceos"]
+    }
+  ]
+}
