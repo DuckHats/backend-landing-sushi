@@ -114,11 +114,4 @@ return [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
-    'client' => [
-        'email' => 'sudokusushibar@gmail.com',
-        'name' => 'Sudoku Sushi',
-        'address' => 'C/ Oviedo 50, Girona, 17005',
-        'phone' => '640589007',
-    ],
-
 ];

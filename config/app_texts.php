@@ -58,7 +58,7 @@ return [
             ],
             'calendar_intro' => 'Añádelo a tu calendario:',
             'contact_button' => 'Contactar Restaurante',
-            'footer' => 'Todos los derechos reservados.',
+            'footer' => '© :year :brand. Todos los derechos reservados.',
         ],
         'order_summary' => [
             'subject' => 'Nuevo Pedido Recibido',
@@ -82,12 +82,12 @@ return [
                 'card' => 'Tarjeta (Datáfono)',
                 'cash' => 'Efectivo',
             ],
-            'footer' => 'Restaurant App.',
+            'footer' => '© :year :brand. Sistema de Pedidos Online.',
         ],
         'reservation_client_receipt' => [
             'subject' => 'Hemos recibido tu solicitud de reserva',
             'title' => 'Reserva Recibida',
-            'intro' => 'Hola :name,<br>Hemos recibido correctamente tu solicitud de reserva. En cuanto el restaurante la confirme, recibirás un correo de confirmación.',
+            'intro' => 'Hemos recibido correctamente tu solicitud de reserva. En cuanto el restaurante la confirme, recibirás un correo de confirmación.',
             'labels' => [
                 'date' => 'Fecha',
                 'time' => 'Hora',
@@ -98,7 +98,7 @@ return [
         'order_client_receipt' => [
             'subject' => 'Resumen de tu pedido',
             'title' => 'Pedido Recibido',
-            'intro' => 'Hola :name,<br>¡Gracias por tu pedido! Aquí tienes un resumen de lo que has pedido. Recibirás una confirmación cuando el restaurante empiece a prepararlo.',
+            'intro' => '¡Gracias por tu pedido! Aquí tienes un resumen de lo que has pedido. Recibirás una confirmación cuando el restaurante empiece a prepararlo.',
             'sections' => [
                 'details' => 'Detalles del Pedido',
                 'summary' => 'Resumen del Pedido',
@@ -109,6 +109,7 @@ return [
                 'total' => 'Total del pedido',
             ],
             'footer' => '¡Disfruta de tu comida!',
+            'status_confirmed' => 'Confirmado ✓',
         ]
     ],
     'calendar' => [
@@ -122,6 +123,10 @@ return [
             'reservation_card_description' => 'Endpoint para la gestión de reservas con confirmación por correo y validación de tokens.',
             'delivery_card_title' => 'Comandas a Domicilio',
             'delivery_card_description' => 'Endpoint para la recepción de pedidos con cálculo de totales y notificaciones al administrador.',
+            'products_card_title' => 'Productos',
+            'products_card_description' => 'Endpoint para la recepción de productos.',
+            'categories_card_title' => 'Categorias',
+            'categories_card_description' => 'Endpoint para la recepción de categorias.',
             'status_checking' => 'Comprobando sistema...',
             'status_operational' => 'Sistema operativo',
             'status_unavailable' => 'Sistema no disponible',

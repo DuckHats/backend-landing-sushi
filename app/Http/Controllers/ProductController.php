@@ -2,30 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Http\Resources\ProductResource;
+use App\Services\ProductService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    protected ProductService $productService;
+
+    public function __construct(ProductService $productService)
+    {
+        $this->productService = $productService;
+    }
+
     /**
      * Display a listing of products.
      * Supports optional category filtering via query parameter.
      */
     public function index(Request $request): JsonResponse
     {
-        $query = Product::query();
-
-        // Filter by category if provided
-        if ($request->has('category')) {
-            $query->where('category', $request->query('category'));
-        }
-
-        $products = $query->orderBy('product_code')->get();
+        $products = $this->productService->getActiveProducts($request->query('category'));
 
         return response()->json([
             'success' => true,
-            'data' => $products,
+            'data' => ProductResource::collection($products),
             'count' => $products->count(),
         ]);
     }
@@ -35,7 +36,7 @@ class ProductController extends Controller
      */
     public function show(string $id): JsonResponse
     {
-        $product = Product::find($id);
+        $product = $this->productService->getProductById($id);
 
         if (!$product) {
             return response()->json([
@@ -46,7 +47,7 @@ class ProductController extends Controller
 
         return response()->json([
             'success' => true,
-            'data' => $product,
+            'data' => new ProductResource($product),
         ]);
     }
 
@@ -55,10 +56,7 @@ class ProductController extends Controller
      */
     public function categories(): JsonResponse
     {
-        $categories = Product::select('category')
-            ->distinct()
-            ->orderBy('category')
-            ->pluck('category');
+        $categories = $this->productService->getUniqueCategories();
 
         return response()->json([
             'success' => true,

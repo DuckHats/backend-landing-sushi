@@ -2,116 +2,61 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests\StoreReservationRequest;
-use App\Models\Reservation;
-use App\Mail\ReservationRequestMail;
-use App\Mail\ReservationClientReceiptMail;
-use App\Mail\ReservationActionMail;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Mail;
+use App\Http\Resources\ReservationResource;
+use App\Services\ReservationService;
+use App\Services\CalendarService;
 use Illuminate\Http\JsonResponse;
 
 class ReservationController extends Controller
 {
+    protected ReservationService $reservationService;
+
+    public function __construct(ReservationService $reservationService)
+    {
+        $this->reservationService = $reservationService;
+    }
+
     public function store(StoreReservationRequest $request): JsonResponse
     {
         if (!empty($request->honey_pot)) {
             return response()->json(['message' => config('app_texts.reservation.spam_detected')], 422);
         }
 
-        $validated = $request->validated();
+        $reservation = $this->reservationService->placeReservation($request->validated());
 
-        $reservation = Reservation::create([
-            'name' => strip_tags($validated['name']),
-            'email' => filter_var($validated['email'], FILTER_SANITIZE_EMAIL),
-            'phone' => strip_tags($validated['phone']),
-            'persons' => $validated['persons'],
-            'date_time' => $validated['date_time'],
-            'intolerances' => isset($validated['intolerances']) ? strip_tags($validated['intolerances']) : null,
-            'token' => Str::random(32),
-            'expires_at' => now()->addHours(24),
-            'status' => 'pending',
-        ]);
-
-        $adminEmail = config('mail.client.email');
-        Mail::to($adminEmail)->send(new ReservationRequestMail($reservation));
-        Mail::to($reservation->email)->send(new ReservationClientReceiptMail($reservation));
-
-        return response()->json([
-            'message' => config('app_texts.reservation.success'),
-            'status' => 'success'
-        ], 201);
+        return (new ReservationResource($reservation))
+            ->response()
+            ->setStatusCode(201);
     }
 
     public function accept($token)
     {
-        $reservation = Reservation::where('token', $token)->firstOrFail();
+        $result = $this->reservationService->updateStatus($token, 'confirmed');
 
-        if ($reservation->expires_at < now()) {
-            return view('reservation_feedback', [
-                'title' => config('app_texts.reservation.feedback.expired_title'),
-                'message' => config('app_texts.reservation.feedback.expired_message'),
-                'icon' => '⏳'
-            ]);
+        if (isset($result['error']) && $result['error'] === 'not_found') {
+            abort(404);
         }
 
-        if ($reservation->status !== 'pending') {
-            return view('reservation_feedback', [
-                'title' => config('app_texts.reservation.feedback.handled_title'),
-                'message' => config('app_texts.reservation.feedback.handled_message', ['status' => $reservation->status]),
-                'icon' => 'ℹ️'
-            ]);
-        }
-
-        $reservation->update(['status' => 'confirmed']);
-
-        Mail::to($reservation->email)->send(new ReservationActionMail($reservation, 'confirmed'));
-
-        return view('reservation_feedback', [
-            'title' => config('app_texts.reservation.feedback.confirmed_title'),
-            'message' => config('app_texts.reservation.feedback.confirmed_message'),
-            'icon' => '✅'
-        ]);
+        return view('reservation_feedback', $result['view_data']);
     }
 
     public function reject($token)
     {
-        $reservation = Reservation::where('token', $token)->firstOrFail();
+        $result = $this->reservationService->updateStatus($token, 'rejected');
 
-        if ($reservation->expires_at < now()) {
-            return view('reservation_feedback', [
-                'title' => config('app_texts.reservation.feedback.expired_title'),
-                'message' => config('app_texts.reservation.feedback.expired_message'),
-                'icon' => '⏳'
-            ]);
+        if (isset($result['error']) && $result['error'] === 'not_found') {
+            abort(404);
         }
 
-        if ($reservation->status !== 'pending') {
-            return view('reservation_feedback', [
-                'title' => config('app_texts.reservation.feedback.handled_title'),
-                'message' => config('app_texts.reservation.feedback.handled_message', ['status' => $reservation->status]),
-                'icon' => 'ℹ️'
-            ]);
-        }
-
-        $reservation->update(['status' => 'rejected']);
-
-        Mail::to($reservation->email)->send(new ReservationActionMail($reservation, 'rejected'));
-
-        return view('reservation_feedback', [
-            'title' => config('app_texts.reservation.feedback.rejected_title'),
-            'message' => config('app_texts.reservation.feedback.rejected_message'),
-            'icon' => '🚫'
-        ]);
+        return view('reservation_feedback', $result['view_data']);
     }
 
-    public function downloadIcs($token, \App\Services\CalendarService $calendarService)
+    public function downloadIcs($token, CalendarService $calendarService)
     {
-        $reservation = Reservation::where('token', $token)->firstOrFail();
+        $reservation = $this->reservationService->getByToken($token);
 
-        if ($reservation->status !== 'confirmed') {
+        if (!$reservation || $reservation->status !== 'confirmed') {
             abort(404);
         }
 

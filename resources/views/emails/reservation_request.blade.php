@@ -8,20 +8,20 @@
 </head>
 
 <body
-    style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #2D0708; margin: 0; padding: 20px; -webkit-font-smoothing: antialiased; line-height: 1.6;">
+    style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: {{ config('customization.colors.primary') }}; margin: 0; padding: 20px; -webkit-font-smoothing: antialiased; line-height: 1.6;">
     <div
-        style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 24px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+        style="max-width: 600px; margin: 0 auto; background-color: {{ config('customization.colors.white') }}; border-radius: 24px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
         {{-- Header --}}
         <div
-            style="background-color: #722022; background-image: linear-gradient(135deg, #722022 0%, #4a1517 100%); color: #ffffff; padding: 40px; text-align: center;">
+            style="background-color: {{ config('customization.colors.primary') }}; background-image: linear-gradient(135deg, {{ config('customization.colors.primary') }} 0%, {{ config('customization.colors.black') }} 100%); color: #ffffff; padding: 40px; text-align: center;">
             <div style="font-size: 40px; margin-bottom: 10px;">🔔</div>
-            <h1 style="margin: 0; font-size: 24px; font-weight: 800; letter-spacing: -0.5px; color: #EAECDB;">
+            <h1 style="margin: 0; font-size: 24px; font-weight: 800; letter-spacing: -0.5px; color: {{ config('customization.colors.beige') }};">
                 {{ config('app_texts.emails.reservation_request.title') }}
             </h1>
         </div>
 
         {{-- Content --}}
-        <div style="padding: 40px; color: #1B1B1E;">
+        <div style="padding: 40px; color: {{ config('customization.colors.black') }};">
             <p style="font-size: 16px; margin-bottom: 30px; color: #4B5563; text-align: center;">
                 {{ config('app_texts.emails.reservation_request.intro') }}</p>
 
@@ -34,28 +34,28 @@
                 </div>
                 <div style="margin-bottom: 15px; border-bottom: 1px solid #E5E7EB; padding-bottom: 10px;">
                     <span
-                        style="font-size: 11px; color: #6B7280; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; display: block; margin-bottom: 4px;">Email</span>
+                        style="font-size: 11px; color: #6B7280; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; display: block; margin-bottom: 4px;">{{ config('app_texts.emails.reservation_request.labels.email') }}</span>
                     <span style="font-size: 15px; color: #111827; font-weight: 600;"><a
                             href="mailto:{{ $reservation->email }}"
-                            style="color: #722022; text-decoration: none;">{{ $reservation->email }}</a></span>
+                            style="color: {{ config('customization.colors.primary') }}; text-decoration: none;">{{ $reservation->email }}</a></span>
                 </div>
                 <div style="margin-bottom: 15px; border-bottom: 1px solid #E5E7EB; padding-bottom: 10px;">
                     <span
-                        style="font-size: 11px; color: #6B7280; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; display: block; margin-bottom: 4px;">Teléfono</span>
+                        style="font-size: 11px; color: #6B7280; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; display: block; margin-bottom: 4px;">{{ config('app_texts.emails.reservation_request.labels.phone') }}</span>
                     <span style="font-size: 15px; color: #111827; font-weight: 600;">{{ $reservation->phone }}</span>
                 </div>
                 <div style="margin-bottom: 15px; border-bottom: 1px solid #E5E7EB; padding-bottom: 10px;">
                     <span
-                        style="font-size: 11px; color: #6B7280; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; display: block; margin-bottom: 4px;">Fecha
-                        y Hora</span>
+                        style="font-size: 11px; color: #6B7280; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; display: block; margin-bottom: 4px;">{{ config('app_texts.emails.reservation_request.labels.date') }}
+                        y {{ config('app_texts.emails.reservation_request.labels.time') }}</span>
                     <span
                         style="font-size: 15px; color: #111827; font-weight: 700;">{{ \Carbon\Carbon::parse($reservation->date_time)->format('d/m/Y H:i') }}h</span>
                 </div>
                 <div style="margin-bottom: 15px; border-bottom: 1px solid #E5E7EB; padding-bottom: 10px;">
                     <span
-                        style="font-size: 11px; color: #6B7280; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; display: block; margin-bottom: 4px;">Comensales</span>
+                        style="font-size: 11px; color: #6B7280; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; display: block; margin-bottom: 4px;">{{ config('app_texts.emails.reservation_request.labels.persons') }}</span>
                     <span
-                        style="display: inline-block; background-color: #374151; color: #ffffff; padding: 2px 10px; border-radius: 9999px; font-size: 14px; font-weight: 700;">{{ $reservation->persons }}</span>
+                        style="display: inline-block; background-color: {{ config('customization.colors.black') }}; color: #ffffff; padding: 2px 10px; border-radius: 9999px; font-size: 14px; font-weight: 700;">{{ $reservation->persons }}</span>
                 </div>
 
                 @if (!empty($reservation->intolerances))
@@ -73,7 +73,7 @@
             {{-- Actions --}}
             <div style="text-align: center; margin-top: 40px; display: flex; gap: 10px; justify-content: center;">
                 <a href="{{ route('reservations.accept', ['token' => $reservation->token]) }}"
-                    style="display: inline-block; background-color: #16A34A; color: #ffffff; padding: 14px 28px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 14px; box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);">
+                    style="display: inline-block; background-color: {{ config('customization.colors.secondary') }}; color: #ffffff; padding: 14px 28px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 14px; box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);">
                     {{ config('app_texts.emails.reservation_request.buttons.accept') }}
                 </a>
                 <a href="{{ route('reservations.reject', ['token' => $reservation->token]) }}"
@@ -90,7 +90,7 @@
         {{-- Footer --}}
         <div style="background-color: #F9FAFB; padding: 25px; text-align: center; border-top: 1px solid #E5E7EB;">
             <p style="margin: 0; font-size: 12px; color: #9CA3AF;">
-                &copy; {{ date('Y') }} {{ config('app.name') }}. {{ config('app_texts.emails.reservation_request.footer') }}
+                {{ str_replace([':year', ':brand'], [date('Y'), config('customization.name')], config('app_texts.emails.reservation_action.footer')) }}
             </p>
         </div>
     </div>
