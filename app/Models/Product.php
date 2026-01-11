@@ -16,12 +16,14 @@ class Product extends Model
         'description',
         'ingredients',
         'allergens',
+        'is_active',
     ];
 
     protected $casts = [
         'price' => 'decimal:2',
         'ingredients' => 'array',
         'allergens' => 'array',
+        'is_active' => 'boolean',
     ];
 
     /**
